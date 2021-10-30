@@ -1,0 +1,49 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class Bad_temp {};
+
+double cf_con(double in_temp,char char_temp) {
+    double out_temp;
+    switch (char_temp) {
+        case 'c':
+            out_temp = 32 + 1.8 * in_temp;
+            break;
+        case 'f':
+            out_temp = (in_temp - 32) / 1.8;
+            break;
+        default:
+            throw Bad_temp();
+    }
+    return out_temp;
+}
+
+int main()
+try {
+    double input_val;
+    char input_temp;
+    while(cin>>input_val>>input_temp) {
+        double output_val = cf_con(input_val,input_temp);
+        switch (input_temp) {
+            case 'c':
+                cout<<output_val<<'k'<<'\n';
+                break;
+            default:
+                cout<<output_val<<'c'<<'\n';
+                break;
+        }
+    }
+}
+
+catch(Bad_temp) {
+    cerr<<"Exception: invalid input!";
+}
