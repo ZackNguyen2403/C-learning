@@ -1,0 +1,49 @@
+#include <iostream>
+#include <vector>
+#include "../../std_lib_facilities.h"
+
+using namespace std;
+
+int main() 
+try {
+	int fib_amt, fib_val, fib_max;
+	vector<int> fib_list;
+	fib_list.push_back(1);
+	fib_list.push_back(1);
+	cout << "Enter fibonacci amt of num:\n";
+	while (cin >> fib_amt) {
+		for (int ii = 2; ii < fib_amt; ++ii) {
+			fib_val = fib_list[ii - 1] + fib_list[ii - 2];
+			fib_list.push_back(fib_val);
+		}
+
+		cout << "First " << fib_amt << " Fibonacci numbers are: ";
+		for (int jj = 0; jj < fib_amt; ++jj) {
+			cout << fib_list[jj] << " ";
+		}
+		int fib_max_pos = fib_list.size();
+		for (int kk = fib_max_pos; kk < fib_max_pos+1; ++kk) {
+			fib_max = fib_list[kk - 1] + fib_list[kk - 2];
+			if (fib_max > fib_list[kk - 1]) {
+				fib_list.push_back(fib_max);
+				fib_max_pos += 1;
+			}
+			else
+			{
+				fib_max = fib_list[kk - 1];
+				cout << "\nLargest fib is at " << kk - 1 << "th position of " << fib_max;
+			}
+			
+		}
+	}
+}
+
+catch (exception& e) {
+	cerr << "Error: " << e.what() << endl;
+	keep_window_open("~");
+	return 1;
+}
+
+catch (...) {
+	cerr << "Unknown exception!\n";
+}
